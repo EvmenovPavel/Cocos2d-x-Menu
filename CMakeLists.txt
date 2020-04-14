@@ -25,17 +25,17 @@
 
 cmake_minimum_required(VERSION 3.6)
 
-set(APP_NAME Cocos2d-x-Menu)
+set(APP_NAME Menu)
 
 project(${APP_NAME})
 
 if(XCODE)
     if(NOT DEFINED CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET)
-        SET (CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET 8.0)
+        set(CMAKE_XCODE_ATTRIBUTE_IPHONEOS_DEPLOYMENT_TARGET 8.0)
     endif()
 endif()
 
-if(NOT DEFINED BUILD_ENGINE_DONE) # to test Cocos2d-x-Menu into root project
+if(NOT DEFINED BUILD_ENGINE_DONE) # to test Menu into root project
     set(COCOS2DX_ROOT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/cocos2d)
     set(CMAKE_MODULE_PATH ${COCOS2DX_ROOT_PATH}/cmake/Modules/)
 
@@ -54,14 +54,48 @@ if(APPLE OR WINDOWS)
     cocos_mark_multi_resources(common_res_files RES_TO "Resources" FOLDERS ${GAME_RES_FOLDER})
 endif()
 
-# add cross-platforms source files and header files 
+# add cross-platforms source files and header files
 list(APPEND GAME_SOURCE
      Classes/AppDelegate.cpp
-     Classes/HelloWorldScene.cpp
+     Classes/AppSettings.cpp
+
+     Classes/Scene/Menu/AppMenu.cpp
+     Classes/Scene/Games/AppGame.cpp
+     Classes/Scene/Options/AppOptions.cpp
+     Classes/Scene/GameOver/AppGameOver.cpp
+     Classes/Scene/Intro/AppIntro.cpp
+     Classes/Scene/Loading/AppLoading.cpp
+     Classes/Scene/Pause/AppPause.cpp
+     Classes/Scene/Titles/AppTitles.cpp
+     Classes/Scene/Video/AppVideo.cpp
+
+     Classes/UI/TiledMap/UITiledMap.cpp
+     Classes/UI/Button/UIButton.cpp
+     Classes/UI/Label/UILabel.cpp
+     Classes/UI/Slider/UISlider.cpp
+     Classes/UI/LoadingBar/UILoadingBar.cpp
+     Classes/UI/Message/UIMessage.cpp
      )
 list(APPEND GAME_HEADER
      Classes/AppDelegate.h
-     Classes/HelloWorldScene.h
+     Classes/AppSettings.h
+
+     Classes/Scene/Menu/AppMenu.h
+     Classes/Scene/Games/AppGame.h
+     Classes/Scene/Options/AppOptions.h
+     Classes/Scene/GameOver/AppGameOver.h
+     Classes/Scene/Intro/AppIntro.h
+     Classes/Scene/Loading/AppLoading.h
+     Classes/Scene/Pause/AppPause.h
+     Classes/Scene/Titles/AppTitles.h
+     Classes/Scene/Video/AppVideo.h
+
+     Classes/UI/TiledMap/UITiledMap.h
+     Classes/UI/Button/UIButton.h
+     Classes/UI/Label/UILabel.h
+     Classes/UI/Slider/UISlider.h
+     Classes/UI/LoadingBar/UILoadingBar.h
+     Classes/UI/Message/UIMessage.h
      )
 
 if(ANDROID)
@@ -131,9 +165,9 @@ endif()
 
 target_link_libraries(${APP_NAME} cocos2d)
 target_include_directories(${APP_NAME}
-        PRIVATE Classes
-        PRIVATE ${COCOS2DX_ROOT_PATH}/cocos/audio/include/
-)
+                           PRIVATE Classes
+                           PRIVATE ${COCOS2DX_ROOT_PATH}/cocos/audio/include/
+                           )
 
 # mark app resources
 setup_cocos_app_config(${APP_NAME})

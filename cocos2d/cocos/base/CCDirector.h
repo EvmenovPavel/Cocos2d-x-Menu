@@ -294,6 +294,9 @@ public:
      * ONLY call it if there is a running scene.
      */
     void popScene();
+    void popScene(Scene *scene);
+    Scene* previousScene();
+    void popSceneWithTransitionFade(float t);
 
     /** 
      * Pops out all scenes from the stack until the root scene in the queue.
